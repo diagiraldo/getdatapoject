@@ -1,8 +1,9 @@
-# getdatapoject
-Course Project 
-##run_analysis.R file
+# Getting and Cleaning Data Course Project
+Course Project  
 
-###First task: Merge the training and the test sets to create one data set
+## run_analysis.R file
+
+### First task: Merge the training and the test sets to create one data set
 
 The following commands read and assign the data to new variables
 
@@ -25,7 +26,7 @@ The same process is done with  the activity and subject code data.
     sub <- rbind(sub_train, sub_test)
     rm(sub_train, sub_test)
 
-###Second task: Extract only the measurements on the mean and standard deviation for each measurement. 
+### Second task: Extract only the measurements on the mean and standard deviation for each measurement. 
 
 The fist step is to load the names of the features in a new variable:
 
@@ -40,7 +41,7 @@ And finally, these index vectors are used to extact the required features:
 
     Xdat <- Xdat[,c(mn_ind, sd_ind)]
     
-###Third task: Use descriptive activity names to name the activities in the data set
+### Third task: Use descriptive activity names to name the activities in the data set
 
 Firts, load the data base with the activity codes and names:
 
@@ -50,13 +51,13 @@ Then, the data in `act` are used to construct a factor with the activity names
 
     activity <- factor(act[,1], levels=act_labs[,1], labels=act_labs[,2])
 
-###Fourth task: Appropriately label the data set with descriptive variable names.
+### Fourth task: Appropriately label the data set with descriptive variable names.
 
 The following command takes the names of the selected features and assign them to the names of the variables in the data set. These names are assigned in the same order the features were selected
 
     names(Xdat) <- as.character(feat[c(mn_ind, sd_ind),2])
 
-###Fifth task: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+### Fifth task: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 The subject and activity information are included in the data frame that contains the features:
 
